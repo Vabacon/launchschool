@@ -134,3 +134,34 @@ It is important to understand that while `nil` may evaluate to false in a condit
 
 ### OPERATIONS
 
+**Operatives** are characters used to perform mathematical processes. Addition `+`, Subtraction ` -`, Multiplication `*`, Division `/`,  Equality comparison `==` , and the Modulo `%`.
+
+```ruby
+> 1 + 1
+=> 2
+
+> 1 - 1
+=> 0
+
+> 4 * 4
+=> 16
+
+> 16 / 4
+=> 4
+
+> 15 / 4		# When dividing integers that do not divide evenly, only the whole numbers are returned.
+=> 3
+```
+
+ The **Modulo** operator, represented by the `%` symbol acts predominately as a remainder operator. Ruby syntax for the modulus `%` is 	`quotient % modulus`. When used with positive integers the modulo operator returns the remainder of the division operation.
+
+```ruby
+> 16 % 4
+=> 0
+
+>16 % 5		# 16 / 5 = 3, with a remainder of 1.
+=> 1		# Remainder of 1 is returned.
+```
+
+The `#remainder` method returns the remainder of an integer division. However, the remainder operator returns 
+
