@@ -307,7 +307,128 @@ The string value of `a value!` is now stored in `a_variable` in spacial memory.
 
 When `a = 4`, a is assigned to an object integer `4`, so when `b = a`, `b` is assigned the same object integer that a is pointing to. When `a` gets reassigned to the object integer `7`, `b` is still pointing to the object integer `4` since `b` is not directly pointing to the variable `a` but to its value.
 
+
+
 **GETTING DATA FROM A USER**
+
+The `gets` method is used to retrieve string input from the user. `gets` stands for "get string" and requires the user to input information and press the enter key.
+
+```ruby
+> name = gets
+Vinton
+=> "Vinton\n"
+```
+
+`name` is assigned to an input method `gets` and waits for information. When data is entered it gets stored in the `name` variable. The return value of name is `Vinton\n`, where there is an appended **new line character** `\n`.  The new line character represents the enter keys input known as a **Carriage return characters**. The `.chomp` method can be appended to the `gets` method to remove carriage return characters. 
+
+```ruby
+> name = gets.chomp
+Vinton
+=> 'Vinton'
+```
+
+
+
+**VARIABLE SCOPE**
+
+The availability of a programs variable is determined by the **variable scope**, where scope is defined by where it is initialized. Scope is defined by a **block** following method invocation, delimited by curly braces `{}` or `do / end` pairs. Be aware that not all `do / end` pairs imply a block.
+
+In LaunchSchool, there is one rule that must be followed regarding what constitutes a variable's scope:
+
+**Inner scope can access variables initialized in an outer scope, but outer scope variable cannot access inner scope variables.**
+
+```ruby
+a = 5				# Initialize var a assigned to value 5.
+
+3.times do |i|		
+   a = 3			# Reassigned var a to value 3.
+end
+
+puts a
+
+=> 3				# Var a gets reassigned 3 times to value 3.
+```
+
+The variable `a` gets reassigned to `3` because it is accessible within the inner block scope, and when called with the `puts` method it outputs a value of `3`.
+
+```ruby
+a = 5				# Initialize var a assigned to value 5.
+
+3.times do |i|		
+   a = 3			# Reassigned var a to value 3.
+   b = 5
+end
+
+puts a
+puts b				# Is var b available outside the block?
+
+=> 3	
+=> scope.rb `<main>': undefined local variable or method 'b' ...
+```
+
+Variable `b` is not available outside the method invocation with a block, since the outside scope cannot see within the block scope. So Ruby throws and error stating that there is an no defined variable. Remember that the distinguishing factor deciding whether a code block crates a new scope for variables is if **a block `{}` or a `do/end` pair immediately follows a method invocation!** 
+
+```ruby
+> arr = [1, 2, 3]
+
+> arr.method_invocation { |i| a = 5 }
+
+> arr.method_invocation do |i|
+    a = 5
+> end
+
+> for i in arr do
+>    a = 5
+> end
+
+> puts a	# example puts method for each block type
+```
+
+The first two blocks create new scope for variable a since they are both blocks following method invocation. Calling `puts a` will generate an error message saying that there is an undefined variable `a` that is being called on. The last  `for` example does not create a new variable scope since it consists of a block **NOT** immediately following a method invocation. Therefore, it is available outside the block as well.
+
+**TYPES OF VARIABLES**
+
+There are **five** types of variables in Ruby: 
+
+- CONSTANTS: Declared with all caps `MY_CONSTANT_VAR`, used to store data that will **never** change. While Ruby will allow changes to constant variables, it is good practice to NOT change these values. Cannot be declared in method definitions and are available throughout the applications scope.
+
+  ```ruby
+  MY_CONSTANT_VAR = "My scope is available throughout the application!!!
+  ```
+
+- $Global: Declared with a `$` sign. Are available throughout the entire application's scope, overriding all scope rules. "Rubyist" tend to stay away from this variable as it may cause complications when using them.
+
+  ```ruby
+  $global_var = "This variable is available everywhere!!!"
+  ```
+
+- @@Class:  Declared using two `@@` signs, are used to declare a class, but must be outside any method definitions, and called on using instance of that class.
+
+  ```ruby
+  @@instances = 0
+  ```
+
+- @Instance: Declared using one `@` sign, are available throughout the current instance of the parent class. 'see above'. These vars may have another set of rules regarding scope boundaries.
+
+  ```ruby
+  @instance_var = "I am only avaiable throughout this current instance of this class."
+  ```
+
+- Local: Declared with `snake_case` all lower case, and are the most common variable in Ruby.
+
+  ```ruby
+  this_variable = 'I must be passed around to cross scope boundaries!!!'
+  ```
+
+  
+
+  
+
+:)
+
+
+
+
 
 
 
