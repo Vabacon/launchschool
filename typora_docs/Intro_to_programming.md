@@ -241,17 +241,73 @@ In order to change 'convert' a data type to another, a conversion method can be 
 
 ### BASIC DATA STRUCTURES
 
-**Arrays** are ordered lists used to organize information, which the information may be made up of any data type. Ruby array syntax is `[ ]` in which data will be held within closed brackets.
+**Arrays** are ordered lists used to organize information, which the information may be made up of any data type. Ruby array syntax is `[ ]` in which data will be held within closed brackets. Each piece of data within the array is called an **Element**, and can be accessed by an **Index**. It is important to know that many programs recognize [0] indexing, which means that the computer starts counting at [0].
+
+```Ruby
+> [1, 2, 3, 4, 5]
+=> [1, 2, 3, 4, 5]
+
+>[1, 2, 3, 4, 5][0]		# Accessing element at index [0].
+=> 1					# Element [1] returned at the [0] index.
+```
 
 
 
+A **Hash** (Dictionary), is a set of _Key-Value_ pairs. As referred to above, hash literal syntax is denoted by `{}` curly braces. The hash contains keys that point to a value, where the key is a symbol. Keys are used to either set or retrieve values. Ruby syntax for a hash is: `{:key => value, :key2 => value2}`. 
+
+```ruby
+> a_hash = {:dog => 'wof',		# Stacked
+   :cat => 'mow',
+  }
+> a_hash = {:dog => 'wof', :cat => 'mow'}	# Single
+
+> a_hash[:dog]			# Calling a value using it's key.
+=> 'wof'
+```
 
 
 
+### EXPRESSIONS & RETURN
+
+An **Expression** is anything that can be evaluated. Almost everything written in Ruby is an expression, and returns a value, an `Errortype`, or even `nil`. 
+
+`puts` is a method telling Ruby to print something to the screen. `puts` does not return anything (meaning `nil`), and prints an evaluated expression to the screen and returns `nil`.
+
+```ruby
+> puts 'YEET!'
+'YEET!'
+=> nil
+```
 
 
 
+# VARIABLES
 
+
+
+A **Variable** is a container holding a point in physical memory used to store, label, and manipulate data within a computer program. When naming variables, select names that are clear and descriptive of the containers contents and what it does. Assigning a variable a value uses the **assignment operator** `=` to store values. Ruby syntax is for assignment is: `variable_name = 'value to be stored'`
+
+```ruby
+> a_variable = 'a value!'
+=> 'a value!'
+
+> a_variable			# Referencing variable
+=> 'a value!'			# Return value of referenced variable
+```
+
+The string value of `a value!` is now stored in `a_variable` in spacial memory.
+
+```ruby
+> a = 4
+> b = a
+> a = 7
+> puts b
+=> 4
+```
+
+When `a = 4`, a is assigned to an object integer `4`, so when `b = a`, `b` is assigned the same object integer that a is pointing to. When `a` gets reassigned to the object integer `7`, `b` is still pointing to the object integer `4` since `b` is not directly pointing to the variable `a` but to its value.
+
+**GETTING DATA FROM A USER**
 
 
 
