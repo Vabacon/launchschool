@@ -1,7 +1,5 @@
-y = 0
-3.times do
-  y += 1
-  x = y
+def say (words = 'hello')
+  puts words + '.'
 end
 
-puts x
+say()

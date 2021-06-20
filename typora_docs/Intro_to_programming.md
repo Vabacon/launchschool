@@ -307,7 +307,258 @@ The string value of `a value!` is now stored in `a_variable` in spacial memory.
 
 When `a = 4`, a is assigned to an object integer `4`, so when `b = a`, `b` is assigned the same object integer that a is pointing to. When `a` gets reassigned to the object integer `7`, `b` is still pointing to the object integer `4` since `b` is not directly pointing to the variable `a` but to its value.
 
+
+
 **GETTING DATA FROM A USER**
 
+The `gets` method is used to retrieve string input from the user. `gets` stands for "get string" and requires the user to input information and press the enter key.
+
+```ruby
+> name = gets
+Vinton
+=> "Vinton\n"
+```
+
+`name` is assigned to an input method `gets` and waits for information. When data is entered it gets stored in the `name` variable. The return value of name is `Vinton\n`, where there is an appended **new line character** `\n`.  The new line character represents the enter keys input known as a **Carriage return characters**. The `.chomp` method can be appended to the `gets` method to remove carriage return characters. 
+
+```ruby
+> name = gets.chomp
+Vinton
+=> 'Vinton'
+```
 
 
+
+**VARIABLE SCOPE**
+
+The availability of a programs variable is determined by the **variable scope**, where scope is defined by where it is initialized. Scope is defined by a **block** following method invocation, delimited by curly braces `{}` or `do / end` pairs. Be aware that not all `do / end` pairs imply a block.
+
+In LaunchSchool, there is one rule that must be followed regarding what constitutes a variable's scope:
+
+**Inner scope can access variables initialized in an outer scope, but outer scope variable cannot access inner scope variables.**
+
+```ruby
+a = 5				# Initialize var a assigned to value 5.
+
+3.times do |i|		
+   a = 3			# Reassigned var a to value 3.
+end
+
+puts a
+
+=> 3				# Var a gets reassigned 3 times to value 3.
+```
+
+The variable `a` gets reassigned to `3` because it is accessible within the inner block scope, and when called with the `puts` method it outputs a value of `3`.
+
+```ruby
+a = 5				# Initialize var a assigned to value 5.
+
+3.times do |i|		
+   a = 3			# Reassigned var a to value 3.
+   b = 5
+end
+
+puts a
+puts b				# Is var b available outside the block?
+
+=> 3	
+=> scope.rb `<main>': undefined local variable or method 'b' ...
+```
+
+Variable `b` is not available outside the method invocation with a block, since the outside scope cannot see within the block scope. So Ruby throws and error stating that there is an no defined variable. Remember that the distinguishing factor deciding whether a code block crates a new scope for variables is if **a block `{}` or a `do/end` pair immediately follows a method invocation!** 
+
+```ruby
+> arr = [1, 2, 3]
+
+> arr.method_invocation { |i| a = 5 }
+
+> arr.method_invocation do |i|
+    a = 5
+> end
+
+> for i in arr do
+>    a = 5
+> end
+
+> puts a	# example puts method for each block type
+```
+
+The first two blocks create new scope for variable a since they are both blocks following method invocation. Calling `puts a` will generate an error message saying that there is an undefined variable `a` that is being called on. The last  `for` example does not create a new variable scope since it consists of a block **NOT** immediately following a method invocation. Therefore, it is available outside the block as well.
+
+**TYPES OF VARIABLES**
+
+There are **five** types of variables in Ruby: 
+
+- CONSTANTS: Declared with all caps `MY_CONSTANT_VAR`, used to store data that will **never** change. While Ruby will allow changes to constant variables, it is good practice to NOT change these values. Cannot be declared in method definitions and are available throughout the applications scope.
+
+  ```ruby
+  MY_CONSTANT_VAR = "My scope is available throughout the application!!!
+  ```
+
+- $Global: Declared with a `$` sign. Are available throughout the entire application's scope, overriding all scope rules. "Rubyist" tend to stay away from this variable as it may cause complications when using them.
+
+  ```ruby
+  $global_var = "This variable is available everywhere!!!"
+  ```
+
+- @@Class:  Declared using two `@@` signs, are used to declare a class, but must be outside any method definitions, and called on using instance of that class.
+
+  ```ruby
+  @@instances = 0
+  ```
+
+- @Instance: Declared using one `@` sign, are available throughout the current instance of the parent class. 'see above'. These vars may have another set of rules regarding scope boundaries.
+
+  ```ruby
+  @instance_var = "I am only avaiable throughout this current instance of this class."
+  ```
+
+- Local: Declared with `snake_case` all lower case, and are the most common variable in Ruby.
+
+  ```ruby
+  this_variable = 'I must be passed around to cross scope boundaries!!!'
+  ```
+
+  
+
+
+# METHODS
+
+
+
+**What are Methods**
+
+A **Method** is a piece of common code that can be executed many times within a program without needing to rewrite it over and over again. A method is defined by using the `def` **Reserve Word**, the method name after the `def`, and complete the definition by using reserve word `end`.
+
+```ruby
+def say(words)	# def reserve word, name, and parameters.
+    puts words	# Method body/logic goes here.
+end				# end reserve word to finish a definition.
+
+say("Hello")	# Invocation of method / argument passed
+say("Sup")		# argument "Sup" gets assigned to words variable.
+```
+
+The method definition `say` simply extracted the logic of printing out text, so that the application may have more flexibility. The act of using a method definition is to **Call** or Invoke, known as **Method Invocation**.  
+
+The `(words)` after `def say` is called a **Parameter**, with is used so that data can be passed into the method definition's scope.
+
+**Arguments** are pieces of information that are passed to a method invocation to be modified, or used, to return a specific result. Arguments are passed when a method definition is called. The argument is then assigned to the local variable(s) initialized at the method definition level. This entails that method definitions have their own scope and cannot be referenced outside the definition. Argument syntax is `method(object)`.
+
+
+
+**Default Parameters**
+
+A **Default Parameter** automatically evaluates to a predetermined value when no arguments are passed to a method invocation.
+
+```ruby
+> def say (words = 'hello')	# Assigned words default to 'hello'.
+>     puts words + '.'
+> end
+
+> say()				# Invocation with no argument passed.
+
+=> hello.			# Default value output from method def.
+```
+
+
+
+**Optional Parentheses**
+
+Most parenthesis may be left of when writing Ruby, method invocation `say('hi')` could be written as `say 'hi'`. And `puts("WASSUP")` and `puts "WASSUP"`. For my case (the future me reading this), please use parenthesis!
+
+
+
+**Method Definition and Local Variable Scope**
+
+Method definitions create their own scope outside the regular flow of execution. Variables within the definition cannot be accessed from outside the definition, and variables outside cannot be access from within the definition without being passed as an argument. 
+
+```ruby
+> a = 5
+
+> def some_method
+>     a = 3
+> end
+
+> puts a
+```
+
+The value of `a` is still `5`. This is because the `a` within the definition is contained in a separate scope. Please be aware that scoping rules for method definitions and blocks are different and should not be confused.
+
+
+
+**Obj.method or Method(obj)**
+
+There are two ways to call methods. Method definitions require a caller and a value to be passed `method(object)` in order to invoke the method definition. Other methods are able to be called using the **Dot Operator** `.` on an object. some `object.method`.
+
+**Mutating the caller**
+
+Some methods can permanently alter the argument passed into the method definition called mutating the caller. This occurs when performing some action that **can** mutate the caller, at the moment there is no way to know what will and wont mutate the caller. This will have to be done by practice and research on documentation.
+
+```ruby
+> a = [1, 2, 3]
+
+> def mutate(arr)
+>    arr.pop
+> end
+
+> p "Before mutate method: #{a}"
+=> "Before mutate method: [1, 2, 3]"
+
+> mutate(arr)
+
+> p "After mutate method: #{a}"
+=> "After mutate method: [1, 2]"
+
+```
+
+Local variable `a` has been permanently changed from within the method definition using the `.pop` method, which has mutated the caller. Even though `a` is outside the method definition scope, `.pop` is a **destructive** method in the `Array` class and can make permanent changes to variables in and out of method definitions.
+
+```ruby
+> a = [1, 2, 3]
+
+> def mutate(arr)
+>    arr.last
+> end
+
+> p "Before mutate method: #{a}"
+=> "Before mutate method: [1, 2, 3]"
+
+> mutate(arr)
+> p "After mutate method: #{a}"
+=> "After mutate method: [1, 2, 3]"
+```
+
+Local variable `a` was not permanently modified in any way since the `last` method returns the last element of an array, but does not modify the array itself. The `last` method is not a destructive method, and cannot make permanent changes.
+
+
+
+**puts vs return: The Sequel**
+
+In Ruby, methods **always** return the evaluated result of the last line of the expression unless an **explicit** return comes before it.
+
+```ruby
+> def add_three(num)
+>   num + 3				# No explicit return statment, so the last evaluated line will be returned.
+> end
+
+> returned_value = add_three(4)
+> puts returned_value
+=> 7							# The return value of add_three stored in returned_value.
+```
+
+To explicitly return a value, use the `return` reserve word.
+
+```ruby
+> def add_three(num)
+>   return num + 3
+>   num + 5			# Explicit return statment returned.
+> end
+
+> returned_value = add_three(4)
+> puts returned_value
+=> 7
+```
+
+When using the `return` reserve word, the method will return that statement without evaluating the next line. Thus, exiting the method definition. Note that `return` is not needed for a method definition to return a value, but is a feature of the Ruby language.
