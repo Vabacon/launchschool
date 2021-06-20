@@ -562,3 +562,9 @@ To explicitly return a value, use the `return` reserve word.
 ```
 
 When using the `return` reserve word, the method will return that statement without evaluating the next line. Thus, exiting the method definition. Note that `return` is not needed for a method definition to return a value, but is a feature of the Ruby language.
+
+
+
+**CHAINING METHODS**
+
+:)
