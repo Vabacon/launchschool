@@ -422,13 +422,72 @@ There are **five** types of variables in Ruby:
 
   
 
-  
 
-:)
-
+# METHODS
 
 
 
+**What are Methods**
+
+A **Method** is a piece of common code that can be executed many times within a program without needing to rewrite it over and over again. A method is defined by using the `def` **Reserve Word**, the method name after the `def`, and complete the definition by using reserve word `end`.
+
+```ruby
+def say(words)	# def reserve word, name, and parameters.
+    puts words	# Method body/logic goes here.
+end				# end reserve word to finish a definition.
+
+say("Hello")	# Invocation of method / argument passed
+say("Sup")		# argument "Sup" gets assigned to words variable.
+```
+
+The method definition `say` simply extracted the logic of printing out text, so that the application may have more flexibility. The act of using a method definition is to **Call** or Invoke, known as **Method Invocation**.  
+
+The `(words)` after `def say` is called a **Parameter**, with is used so that data can be passed into the method definition's scope.
+
+**Arguments** are pieces of information that are passed to a method invocation to be modified, or used, to return a specific result. Arguments are passed when a method definition is called. The argument is then assigned to the local variable(s) initialized at the method definition level. This entails that method definitions have their own scope and cannot be referenced outside the definition. Argument syntax is `method(object)`.
 
 
 
+**Default Parameters**
+
+A **Default Parameter** automatically evaluates to a predetermined value when no arguments are passed to a method invocation.
+
+```ruby
+> def say (words = 'hello')	# Assigned words default to 'hello'.
+>     puts words + '.'
+> end
+
+> say()				# Invocation with no argument passed.
+
+=> hello.			# Default value output from method def.
+```
+
+
+
+**Optional Parentheses**
+
+Most parenthesis may be left of when writing Ruby, method invocation `say('hi')` could be written as `say 'hi'`. And `puts("WASSUP")` and `puts "WASSUP"`. For my case (the future me reading this), please use parenthesis!
+
+
+
+**Method Definition and Local Variable Scope**
+
+Method definitions create their own scope outside the regular flow of execution. Variables within the definition cannot be accessed from outside the definition, and variables outside cannot be access from within the definition without being passed as an argument. 
+
+```ruby
+> a = 5
+
+> def some_method
+>     a = 3
+> end
+
+> puts a
+```
+
+The value of `a` is still `5`. This is because the `a` within the definition is contained in a separate scope. Please be aware that scoping rules for method definitions and blocks are different and should not be confused.
+
+
+
+**Obj.method or Method(obj)**
+
+There are two ways to call methods. Method definitions require a caller and a value to be passed `method(object)` in order to invoke the method definition. Other methods are able to be called using the **Dot Operator** `.` on an object. some `object.method`.
