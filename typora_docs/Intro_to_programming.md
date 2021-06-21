@@ -487,6 +487,7 @@ Method definitions create their own scope outside the regular flow of execution.
 The value of `a` is still `5`. This is because the `a` within the definition is contained in a separate scope. Please be aware that scoping rules for method definitions and blocks are different and should not be confused.
 
 
+<<<<<<< HEAD
 
 **Obj.method or Method(obj)**
 
@@ -568,3 +569,9 @@ When using the `return` reserve word, the method will return that statement with
 **CHAINING METHODS**
 
 :) :)
+=======
+
+**Obj.method or Method(obj)**
+
+There are two ways to call methods. Method definitions require a caller and a value to be passed `method(object)` in order to invoke the method definition. Other methods are able to be called using the **Dot Operator** `.` on an object. some `object.method`.
+>>>>>>> 77ed78863df17fef5deb477be3b52259e79d294c
