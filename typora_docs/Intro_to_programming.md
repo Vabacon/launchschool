@@ -574,3 +574,93 @@ There are two ways to call methods. Method definitions require a caller and a va
 
 **CHAINING METHODS**
 
+As long as an expression is returning a value, especially method definition, and not `nil`. Methods can be chained together to form complex code.
+
+```ruby
+"Hi there".length.to_s	# returns "8" - a string.
+```
+
+The code returns `"8"` as a string data type, since `.length` methods returns the length of a string as an integer, calling `.to_s` will convert it into a string.
+
+```ruby
+def add_three(n)
+    puts n + 3
+end
+
+add_three(5).times {puts "Will this work"}
+```
+
+The return value of `puts` within the `add_three` method is `nil`, and returns a `NoMethodError: undefined method times' for nil:Nilclass`. the `.times` method cannot be used on the `nil` class.
+
+```ruby
+def add_three(n)
+    new_value = n + 3
+    puts new_value
+    new_value			# No explicit return key.
+end
+
+add_three(5).times {puts "Will this work"}
+```
+
+This code returns a value to the `.times` method to be used in the block. This code works because there is an implicit return ` new_value` in the method definition.
+
+
+
+**Method Calls as Arguments** 
+
+Method definitions are able to be used as an argument to pass values to another method definition.
+
+```ruby
+> def add (a, b)
+>     a + b
+> end
+
+> def sub (a, b)
+>     a - b
+> end
+
+> def multi (num1, num2)
+>     num1 * num2
+> end
+
+> multi(add(10, 40), sub(38, 21))
+=> 850
+```
+
+When using nested method calls, use parentheses to prevent confusion. Know what each method is returning, the returned value is vital to understanding whether a value will be passed and modified or an error will be generated.
+
+
+
+**The Call Stack**
+
+A **Call Stack** is a 'to-do list' of method invocations that are ordered by function name, passed arguments/parameters, and line number. When ever function invocation occurs, that function details are saved to the top of the call stack, and when the function returns, its information is 'popped' from the top. **Last In, First Out**.
+
+```ruby
+1  def first
+2    puts "first method"
+3 end
+4
+5 def second
+6    first
+7    puts "second method"
+8 end
+9
+10 second
+11 puts "main method"
+```
+
+
+
+| Call Stack          |
+| ------------------- |
+| puts "first method" |
+| first: line 2       |
+| second: line 6      |
+| main: line 10       |
+
+As methods are invoked, Ruby saves its information and updates the stack frame. `main` gets it's first invocation on line `10`, where it's information is saved so that when it's method returns, execution may continue. Method def. `second` invokes the method `first` on line `6`, and it's information is updated to the call stack. Within the `first` method, the `puts` method is invoked with a string, it 'returns' completing the `first` method's execution. This will continue back down the call stack until it reaches `main` on line `10`, which the call stack will 'pop' the information from the top, and continues to execute the rest of the program.
+
+Ruby has a stack size of at least 10,000 stack entries. If the stack were to run out of room , a `SystemStackError` exception would occur.
+
+
+
