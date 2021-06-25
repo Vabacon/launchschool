@@ -664,3 +664,214 @@ Ruby has a stack size of at least 10,000 stack entries. If the stack were to run
 
 
 
+# FLOW CONTROL
+
+
+
+**Flow Control** is a sequence flow that takes precedence under certain conditions, meaning a condition must be met in order for the program to execute the correct path. They are basic logical structures defined with reserve words, `if`, `else`, `elsif`, and `end`, and use logical operators, `<`, `>`, `<=`, `>=`, `==`, `!=`, `&&`, `||`.
+
+```ruby
+puts "Put in a number"
+a = gets.chomp.to_i
+
+if a == 3
+    puts "a is 3"
+elsif a == 4
+    puts "a is 4"
+else
+    puts "a is neither 3, nor 4"
+end
+```
+
+This `if` statement evaluates a positive integer, and compares them to the conditionals using the `==` equality operator. `else` is a default conditional in this example, which evaluates any other input, other than `3` and `4`, and prints `"a is neither 3, nor 4"`.
+
+There are examples of valid Ruby conditionals.
+
+1. `if` by itself.
+
+   ```ruby
+   if x == 3
+       puts "x is 3"
+   end
+   ```
+
+   An `elsif` condition without `else`.
+
+2. ```ruby
+   if x == 3
+       puts "x is 3"
+   elsif x == 4
+       puts "x is 4"
+   end
+   ```
+
+   `if` statement with only `else`.
+
+3. ```ruby
+   if x == 3
+       puts "x is 3"
+   else
+       puts "x is NOT 3"
+   end
+   ```
+
+   Must use "then" keyword when using 1-line syntax.
+
+4. ```ruby
+   if x == 3 then puts "x is 3" end
+   ```
+
+   An if statement may be appended to the end of an expression, or literal.
+
+5. ```ruby
+   puts "x is 3" if x == 3
+   ```
+
+   Ruby's reserve word `unless` acts opposite to `if`.
+
+6. ```ruby
+   puts "X is NOT 3" unless x == 3
+   ```
+
+
+
+**Comparisons**
+
+**Comparison Operators** compares two **Operands** and always returns a boolean value. a **Boolean Value** is either `true` or `false`.
+
+1. The "is equal to" operator `==`, checks the operands are equal.
+
+   ```ruby
+   5 == 5
+   > true
+   
+   5 == "5"
+   > false
+   ```
+
+2. The "not equal to" operator `!=` compares anything to the left of the symbol is not equal to the right.
+
+   ```ruby
+   4 != 4
+   > false
+   
+   4 != "abc"
+   > true
+   ```
+
+3. The "less than" symbol `<`. Anything to the left of the symbol is evaluated against anything on the right.
+
+   ```ruby
+   2 < 5
+   > true
+   
+   8 < 2
+   > false
+   ```
+
+4. The "greater than" symbol `>`. Anything to the left that has a higher value to anything on the left that has a lower value.
+
+   ```ruby
+   5 > 2
+   > true
+   
+   6 > 7
+   > false
+   
+   "42" < "402"
+   > false
+   
+   "42" > "402"
+   > true
+   ```
+
+   Ruby reads string operands from left to right, comparing each character with its counterpart. If both strings are equal up to the length of the shorter string, than the shorter string is considered less than the longer string.
+
+5. The "less than or equal to" symbol `<=`.  Compares if the operand on the left of the symbol is less than or equal to the right.
+
+6. The "more than or equal to" symbol `>=`. Compares if the operand on the left of the symbol is more than or equal to the right.
+
+   ```ruby
+   4 <= 5
+   > true
+   
+   5 >= 5
+   > true
+   
+   4 >= 5
+   > false
+   
+   4 >= 3
+   > true
+   
+   4 >= 4
+   > true
+   ```
+
+
+
+**Combining Expressions**
+
+Combining expressions makes it possible to combine multiple conditional expressions to create a more specific scenario. 
+
+- `&&` - "and" operator. Both expressions must be true for the entire expression to be evaluated as true.
+
+```ruby
+(4 == 4) && (5 == 5)
+> true
+(5 == 4) && (5 == 5)
+> false
+```
+
+- `||` - "or" operator. Evaluates to `true` if either expression evaluates to `true`.
+
+```ruby
+( 5 == 5) || (3 == 2)
+> true
+(4 == 2) || (5 == 6)
+> false
+```
+
+- `!` - the "not" operator. Changes the value of a boolean expression.
+
+```ruby
+!(4 == 4)
+> false
+```
+
+For clarity:
+
+1. `<=`, `<`, `>`, `>=` - Comparison operators
+
+2. `==`, `!=` - Equality
+3. `&&` - Logical AND
+4. `||` - Logical OR
+
+```ruby
+if x && y || z
+    # do something
+end
+```
+
+Here, the `&&` will be evaluated first, if `true` then the code will execute. If `false`, then the `||` will be evaluated. If none evaluate to `true`, the code will exit the `if` statement
+
+
+
+**Ternary Operator**
+
+:)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
