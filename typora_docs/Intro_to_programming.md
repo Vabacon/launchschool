@@ -859,7 +859,90 @@ Here, the `&&` will be evaluated first, if `true` then the code will execute. If
 
 **Ternary Operator**
 
-:)
+The **Ternary Operator** is a common Ruby idiom that makes a quick `if/else` statement on one line, and uses a combination of the `?` and `:` for it's syntax.
+
+```ruby
+true ? "This is true" : "This is not true"
+=> "This is true"
+
+false ? "This is true" : "This is not true"
+=> "This is not true"
+```
+
+Ternary operators work by evaluating the truthiness of the statement on the left of the `?`. If it is `true` then the code on the left of the `:` gets executed. If the statement on the left of the `?` is false, then the code on the right of the `:` gets executed. 
+
+```ruby
+expression ? true_value : false_value
+```
+
+
+
+**Case Statement**
+
+a **Case Statement** has similar functionality as an `if/else` statement, but uses a different syntax using reserve words `case`, `when`, `else`, `end`. 
+
+1. ```ruby
+   a = 5
+   
+   case a
+       when 5
+       puts "a is 5"
+       when 6
+       puts "a is 6"
+   else
+       puts "a is neither 5, nor 6."
+   end
+   ```
+
+   A case statement's result can also be saved to a variable.
+
+2. ```ruby
+   a = 5
+   
+   answer = case a
+       when 5
+      	  "a is 5"
+       when 6
+         "a is 6"
+   	else
+       puts "a is neither 5, nor 6."
+   end
+   
+   puts answer
+   ```
+
+3. This case statement doesn't take an argument, meaning no information is added after the `case`. So each `when` statement will need to be fully tested.
+
+   ```ruby
+   a = 5
+   
+   case
+       when a = 5
+         puts "a is 5"
+       when 6
+         puts "a is 6"
+   	else
+         puts "a is neither 5, nor 6."
+   end
+   ```
+
+
+
+**True and False**
+
+When writing `if/else` statements, it needs to evaluate expressions that will return either true or false.
+
+```ruby
+a = 5
+
+if a
+    puts "how can this be true?"
+else
+    puts "it is not true!"
+end
+```
+
+This statment will evaluate to true, since `a = 5` is a truthy value it will evaluate to `true`. 
 
 
 
