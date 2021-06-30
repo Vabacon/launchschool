@@ -946,7 +946,57 @@ This statment will evaluate to true, since `a = 5` is a truthy value it will eva
 
 
 
+# LOOPS & ITERATORS
 
+
+
+A **Loop** is a repeatable piece of code that will execute for an amount of repetitions or until a certain condition is met. Loops consist of `while`, `do/while`, `loop`, and `for` reserve words.
+
+
+
+**A Simple Loop**
+
+A simple `loop` uses the `loop` method. `loop` takes a block, denoted by `{}`, or `do/end`, and will execute the code within the block. The `loop` continues until it reads a `break` statement within the block, terminating the `loop`. Ctrl + c can also be used to manually cancel the iterations.
+
+```ruby
+loop do
+    puts "This will keep printing Ctrl + C"
+end
+```
+
+The loop continues to print using the `puts` method until Ctrl + c is pressed canceling the `loop` execution.
+
+
+
+**Controlling Loop Execution**
+
+The `break` keyword exits the code at any point, and any code after will not be executed. The `break` keyword only exits the `loop` and not the entire program.
+
+```ruby
+i = 0
+loop do
+    i = i + 1
+    puts i
+    break
+end
+
+> 1
+```
+
+The `loop` block executes the code and prints an output, and is then exited by the `break` statement.
+
+```ruby
+i = 0
+loop do
+  i = i + 2
+  puts i
+  if i == 10
+    break
+  end
+end
+```
+
+This code iterates through until an `if` condition is met, where it will execute the `break` statement. This code runs a total of 5 times before the `break` statement is read.
 
 
 
