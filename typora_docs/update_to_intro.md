@@ -151,7 +151,85 @@ The recursion method loops for every instance that `number < 2` is not true. The
 
 
 
+An **Array** is a list of elements, ordered by index, that can be of any data type.
 
+```ruby
+array = [1, 'Bob', 4.33, nil, ['nested array']]
+```
+
+Accessing information within the array can be done using the index number on the array.
+
+```ruby
+array[3]
+> nil
+```
+
+Arrays are `0` indexed, meaning that the first element starts at the `0` spot, the second element is in the `1` index spot.
+
+
+
+**Modifying Arrays**
+
+Method can be used to modify an array to either add, modify, or remove elements with it.
+
+```ruby
+array.pop
+> ['nested array']
+```
+
+The `pop` method invoked on the `array` variable permanently removed that last element from `array`. The `pop` method is a mutating method, and returns the removed element.
+
+The `.push` method is used to add a permanent element to an array. Syntax for this method is `variable.push(element_to_be_added)`.
+
+```ruby
+array.push('reeeet')
+> [1, 'Bob', 4.33, nil, 'reeeet']
+```
+
+Another syntax for the `.push` method is the shovel operator `<<`.
+
+```ruby
+array << 28
+> [1, 'Bob', 4.33, nil, 'reeeet', 28]
+```
+
+Both method mutate the caller so the original array is modified.
+
+The `.map` method iterates over an array and applies each element to a block in which a new array, with modified value, is returned, but the original array is not mutated. This modified return value can be stored in another variable. There is also the `.collect` method which is an alias for `.map`. They are the same method.
+
+```ruby
+array = [1, 2, 3, 4]
+array.map { |e| e ** 2 } # or array.collect
+> [1, 4, 9, 16]
+
+p array
+> [1, 2, 3, 4]
+
+b_array = array.map { |i| 1, 2, 3, 4}
+p b_array
+> [1, 4, 9, 16]
+```
+
+The `.map` method does not destroy the original array.
+
+The `delete_at` method is used to delete an element at a certain index. This is a destructive method and will modify arrays.
+
+```ruby
+array.delete_at(1)
+> 2
+p array
+> [1, 3, 4]
+```
+
+The `.delete` method allows the removal of an element when the value is known but not the index. This method permanently deletes and modifies the array at that specific indexed value.
+
+```ruby
+array.delete(4)
+> 4
+
+p array
+> [1, 2, 3]
+```
 
 
 
