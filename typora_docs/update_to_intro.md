@@ -216,7 +216,7 @@ The `delete_at` method is used to delete an element at a certain index. This is 
 
 ```ruby
 array.delete_at(1)
-> 2
+> 2				# Value at the index (1)
 p array
 > [1, 3, 4]
 ```
@@ -225,10 +225,113 @@ The `.delete` method allows the removal of an element when the value is known bu
 
 ```ruby
 array.delete(4)
-> 4
+> 4				# The actual value, not the index
 
 p array
 > [1, 2, 3]
+```
+
+The `.uniq` method is used to return an array with all repeating values removed. This method does not modify the array.
+
+```ruby
+array = [1, 2, 2, 3, 3, 3, 4, 5, 5, 5, 5, 5]
+array.uniq
+> [1, 2, 3, 4, 5]
+
+p array
+> [1, 2, 2, 3, 3, 3, 4, 5, 5, 5, 5, 5]
+```
+
+To modify permanently using the `.uniq` method, a bang suffix `!` is needed to destructively modify the array.
+
+```ruby
+array.uniq!
+> [1, 2, 3, 4, 5]
+
+p array
+> [1, 2, 3, 4, 5]
+```
+
+The `.uniq` and `.uniq!` methods are two different methods within the Ruby Array Class. The `!` cannot be added to any method to make it destructive.
+
+
+
+**Iterating Over an Array**
+
+Iterating using the `.select` method iterates over an array in which it compares each element to a block, and returns any value that evaluates to `true`.
+
+```ruby
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+numbers.select { |num| num > 4 }
+> [5, 6, 7, 8, 9, 10]
+
+p numbers
+> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
+The `.select` method selects all elements that are `true` given the expression `num > 4` and outputs a new array with the evaluated elements. The `.select` method does not mutate the caller.
+
+
+
+**Methods With a !**
+
+the **Bang Suffix `(!)`**, at the end of a method **usually** indicates that it will mutate the caller. This is an indicator of a destructive method. It is good practice to be sure of the method and to check the Ruby documentation to be sure of that methods behavior. Since this is not always the case, there are destructive methods such as `.pop` and `.push` that mutate the caller that are both without the bang suffix.
+
+
+
+**Mutating the Caller: The Sequel**
+
+Mutating callers is an important concept to understand, since situations could occur where data is being sent to a method that may be destructive and cause significant confusion. 
+
+```ruby
+def mutate(arr)
+    arr.pop
+end
+
+def not_mutate(arr)
+    arr.select { |i| i > 3 }
+end
+
+a = [1, 2, 3, 4, 5, 6]
+mutate(a)
+not_mutate(a)
+
+puts a
+```
+
+In this example, the `mutate` method definition permanently modified the array by using `arr.pop`, which removed `6` from the `a` variable. The `not_mutate` method used the `.select` method on the `a` variable, which returned a value, but did not modify the `a` variable. At the last line, the output is `[1, 2, 3, 4, 5]` since the `.pop` was used.
+
+
+
+**Nested Arrays**
+
+Since arrays can contain any data type, they can also contain nested arrays, which are arrays within arrays.
+
+```ruby
+teams = [['Joe', 'Steve'], ['Frank', 'Molly'], ['Dan', 'Sara']]
+> [["Joe", "Steve"], ["Frank", "Molly"], ["Dan", "Sara"]]
+```
+
+In an example where there are separated teams, an individual team can be accessed using an array index.
+
+```ruby
+teams[1]
+> ['Frank', 'Molly']
+```
+
+This is an example of accessing an array nested within another array, in which we can access the elements within it. To be continued later.
+
+
+
+**Comparing Arrays**
+
+Arrays can be compared using the equality operator.
+
+```ruby
+a = [1, 2, 3]
+b = [2, 3, 4]
+a == b
+> false
 ```
 
 
