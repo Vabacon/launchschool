@@ -998,9 +998,95 @@ end
 
 This code iterates through until an `if` condition is met, where it will execute the `break` statement. This code runs a total of 5 times before the `break` statement is read.
 
+The `next` keyword is used to exit from a current iteration,by skipping the rest of the code, and execute the next `loop`.
+
+```ruby
+i = 0
+loop do
+    i = i + 2
+    if i == 4
+        next
+    end
+    puts i
+    if i == 10
+        break
+    end
+end
+
+> 2
+> 6
+> 8
+> 10
+```
+
+When the `if i == 4` code was evaluated, `next` was executed and the rest of the code was skipped until the next iteration of the `loop`.
 
 
 
+**Loop Scope**
+
+Writing a `loop` with a block creates a new scope. `loop` blocks abide by ruby scoping rules, where the inside block can access outside variables, but variable data is lock within the block from the outside.
+
+```ruby
+loop do
+    x = 42
+    break
+end
+puts x	# Rasis an error -- Undefined local variable or method 'x' for main:Object.
+```
+
+```ruby
+x = 42
+loop do
+    puts x
+    x = 2
+    break
+end
+puts x
+
+> 42
+> 2
+```
+
+When the `puts` method was called from within the block, using `x`, `42` was printed to the screen. `x` then gets reassigned from within the block `x = 2`, and break is executed exiting the loop. When `puts` is passed `x`, `2` is printed to the screen. Showing that variables outside the `loop` block are accessible, reassignable, and mutable.
+
+
+
+**While Loops**
+
+A **While Loop** evaluates a parameter as either true or false. Once the expression evaluates to false, the code is not executed again.
+
+```ruby
+x = gets.chomp.to_i
+while x >= 0
+    puts x
+    x = x - 1	# Also Refactor to x -= 1
+end
+```
+
+The `while loop` will continue executing the code so long as `x >= 0` evaluates to `true`. `puts` is called with the `x` as an argument, and then `x` gets reassigned to `x = x - 1`. When `while` evaluates to `false`, the the code is exited.
+
+Refactoring from `x = x - 1` to `x -= 1` is a better way to write code brevity and make it look nice.
+
+**While Scope**
+
+Unlike the `loop` scope, `while` does not have it's own scope, so the entire body of the of the `while loop` occupies the same scope as the rest of the program.
+
+```ruby
+x = 0
+while x < 5
+    y = x * x
+    x += 1
+end
+
+puts y		# => 16
+```
+
+This demonstrates how variables within the `while` body are accessed and changed during it's iterations. The `loop` will continue until the value of `x` is `5`, then the rest of the code will be skipped.
+
+
+
+**Until Loops**
 
 
 
