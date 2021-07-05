@@ -1415,17 +1415,163 @@ This is an example of accessing an array nested within another array, in which w
 Arrays can be compared using the equality operator.
 
 ```ruby
-a = [1, 2, 3]b = [2, 3, 4]a == b
+a = [1, 2, 3]
+b = [2, 3, 4]
+a == b
 > false
+```
+
+Using the `.unshift` method allows an element to be added to the **beginning**, or start, of an Array.
+
+```ruby
+b.pop
+> 4
+
+b.unshift(1)
+> [1, 2, 3]
+
+b == a
+> true
+```
+
+The modified `b` array is now equal to the `a` array, using the `.pop` and `.unshift` methods.
+
+
+
+**`.to_s`**
+
+The `.to_s` method converts data types, that can be converted, to a string type. When using string interpolation, Ruby does this automatically.
+
+```ruby
+a = [1, 2, 3].to_s
+
+p a
+> "[1, 2, 3]"
 ```
 
 
 
+**Common Array Methods**
+
+Refer to the Ruby documentation to view the built-in Array class methods.
+
+- `.include?` method checks the argument given is included in the array, and returns a boolean value. These types of method are called **Predicates**.
+
+  ```ruby
+  a = [1, 2, 3]
+  a.include?(2)
+  > true
+  
+  a.include(4)
+  > false
+  ```
+
+- `.flatten` is used to create a one dimensional array from a multi-dimensional, nested, array. The `.flatten` method is **NOT** destructive, and will not modify the original variable.
+
+  ```ruby
+  a = [1, 2, [3, 4], [5, 6]]
+  a.flatten
+  
+  > [1, 2, 3, 4, 5, 6]
+  
+  p a
+  > [1, 2, [3, 4], [5, 6]]
+  ```
+
+- `.each_index` iterates through an array like the `.each` method might have, but instead of manipulating the value at the index, the variable represents the index number.
+
+  ```ruby
+  a = [1, 2, 3]
+  a.each_index { |i| puts "This is index #{i}."}
+  
+  > "This is index 0."
+  > "This is index 1."
+  > "This is index 2."
+  ```
+
+- `.each_with_index` manipulates both the value and the index using two parameters within a block. The first parameter represents the value, and the second is the index.
+
+  ```ruby
+  a = [1, 2, 3]
+  a.each_with_index do |val, idx|
+      "#{idx+1}. #{val}"
+  end
+  
+  > 1. 1
+  > 2. 2
+  > 3. 3
+  ```
+
+- `.sort` is used to return a sorted array. The `.sort` method is not destructive, so it will not modify the original array in any way.
+
+  ```ruby
+  a = [4, 5, 6, 1, 2, 3]
+  a.sort
+  
+  > [1, 2, 3, 4, 5, 6]
+  ```
+
+- `.product` is used to combine two arrays in an "polynomial" fashion. Each element of the first array is combined with each element of the argument, and is created in a nested fashion. Tested in irb, this method is not destructive, and the original variable is not modified.
+
+  ```ruby
+  [1, 2, 3].product([4, 5])
+  > [[1, 4], [1, 5], [2, 4], [2, 5], [3, 4], [3, 5]]
+  ```
 
 
 
+**`.each` vs. `.map`**
+
+- `.each` works on objects that allow for iteration and is typically used with a block. When a block is given, the `.each` method will run each element once through the block and returns the collection it was invoked on. If no block was given, then it returns an **Enumerator**.
+
+  ```ruby
+  a = [1, 2, 3]
+  a.each { |e| puts e }
+  1
+  2
+  3
+  > [1, 2, 3]
+  ```
+
+  This example shows a common `.each` use, prints local variable `e` which is used to store each element, and returns the original object.
+
+  The `.each` can also be used to output modified values. If instead of the upper block, `a.each { |e| puts e + 2 } `was written instead, it would print out the evaluated result, but still return the original object.
+
+- `.map` is similar to `.each` in that it iterates over objects, and applies a block for each element if a block is given. `.map` is different in the way it returns its value. It creates and returns a new object containing the values evaluated within it's block, but leaves the original object unmodified.
+
+  ```ruby
+  a = [1, 2, 3]
+  a.map do |e|
+      e ** 2
+  end
+  > [2, 4, 9]
+  ```
+
+  When evaluating `.map` using `.puts` within it's block, `.map` creates a new array consisting of all the return values from within it's block, and since the `.put` method returns `nil`, the following code will evaluate to an array of all `nil`s.
+
+  ```ruby
+  a.map do |e|
+      puts e**2
+  end
+  > [nil, nil, nil]
+  ```
+
+  If no block is given, the `.map` method will return an Enumerator the same way `.each` will.
+
+  ```ruby
+  a.map
+  >#<Enemerator: [1, 2, 3]:map>
+  ```
+
+Both `.each` and `.map` are important for iteration, and need careful attention to detail. use `.each` for iteration, and `.map` for transformation.
 
 
+
+# Hashes
+
+
+
+:)
 
 
 

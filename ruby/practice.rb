@@ -1,10 +1,8 @@
-puts "Put in a number"
-a = gets.chomp.to_i
-
-if a == 3
-    puts "a is 3"
-elsif a == 4
-    puts "a is 4"
-else
-    puts "a is neither 3, nor 4"
+def count_down(number)
+  puts number
+  if number > 0
+    count_down(number - 1)
+  end
 end
+
+count_down(10)
