@@ -1571,9 +1571,69 @@ Both `.each` and `.map` are important for iteration, and need careful attention 
 
 
 
+A **Hash** is a data structure that stores items by `{:key => value}`, or `{key: value}` pairs to create an associative representation of data. Hashes are usually created using _symbols_ as keys and any data type as a value.
+
+```ruby
+old_syntax_hash = {:name => 'vinton'}
+> {:name => 'vinton'}					# pre Ruby 1.9
+
+new_syntax_hash = {name: 'vinton'}
+> {:name => 'vinton'}
+```
+
+Multi key value pair hash using a comma to separate each key value pair.
+
+```ruby
+individual = {
+    height: '5 foot, 12 inches',
+    weight: '189 lbs',
+    color: 'Brown',
+    hair: 'Black',
+    race: 'White'
+    ethnicity: 'Latino/Hispanic',
+    sex: 'Male'
+    }
+```
+
+To add onto an existing hash, call on the hash with the brackets `[]` containing the key and assign it to the value. Syntax is `hash_variable[location:] = 'College Station, Tx'`.
+
+```ruby
+hash = Hash.new
+> {}
+hash[first_key:] = "First Value!"
+
+p hash
+> {:first_key => 'First Value!'}
+```
+
+To remove a key value pair from a hash, use the syntax `hash_variable.delete(:key)`.
+
+```ruby
+hash_variable.delete(:location)
+> 'College Station, Tx'
+```
+
+To retrieve a piece of information from a hash use syntax `hash_variable[:key]`.
+
+```ruby
+individual[:ethnicity]
+> 'Latino/Hispanic'
+```
+
+To add another hash, use the `.merge!` method to permanently merge two hashes together. Using the `.merge` without the bang suffix will return a new hash without the destructive properties.
+
+```ruby
+individual.merge!(other_hash)
+# outputs a merged key value set from individual and other_hash
+```
+
+
+
+**Iterating Over Hashes**
+
+
+
 :)
-
-
 
 
 

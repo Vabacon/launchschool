@@ -1,8 +1,10 @@
-def count_down(number)
-  puts number
-  if number > 0
-    count_down(number - 1)
-  end
+a_array = [1, 2, 3, 4, 5]
+b_array = Array.new
+
+b_array = a_array.map do |e|
+  e + 2
 end
 
-count_down(10)
+p a_array
+
+p b_array
