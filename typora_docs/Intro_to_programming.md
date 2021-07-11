@@ -1631,9 +1631,101 @@ individual.merge!(other_hash)
 
 **Iterating Over Hashes**
 
+Iterating over hashes is similar to iterating over arrays with some differences. When iterating over a hash, it is required to use both the key and value as local variables within the block. Syntax is `hash_iteration.each { |key, value| block_logic }`, also used with the `do/end`.
+
+```ruby
+person = {name: 'bob', height: '6 feet', weight: '160 lbs', hair: 'brown'}
+
+person.each do |key, value|
+    puts "Bob's #{key} is #{value}."
+end
+```
 
 
-:)
+
+**Hashes as Optional Parameters**
+
+When giving optional parameters to a method definition, a hash can be passed to give the method more flexability.
+
+```ruby
+def greeting(name, options = {})
+    if options.empty?
+        puts "Hi, my name is #{name}."
+    else
+        puts "Hi, my name is #{name}, and I am #{options[:age]}" +
+            " years old and I live in #{options[:city]}."
+    end
+end
+
+greetings('Bob')
+greetings('Bob', age: 62, city: 'Hempstead')
+```
+
+The hash arguments that is passed to the greetings method definition can also be written as:
+
+```ruby
+greetings('Bob', {age: 62, city: 'Hempstead'})
+```
+
+A hash does not require curly braces `{}` when it is the last argument passed. Ruby acts identically to either syntax, so long as the hash is the **last** arguement.
+
+
+
+**Hashes vs. Arrays**
+
+When deciding whether to use an Array or Hash:
+
+- Does this data need to be associated with a specific lable?
+  - yes? Then use a hash.
+  - No? Then use an array, if the data doesn't have a natural label.
+- Does order matter?
+  - Yes? Then use an array.
+  - Hashes also maintain order, but ordered items are usually stored in an array.
+- Do I need a 'stack', or 'queue' structure?
+  - Yes? Use an array. Arrays are good at mimicking simple 'first-in-first-out' queues, or 'last-in-first-out' stacks.
+
+
+
+**A Note On Hash Keys**
+
+The most common utilization of hashes include symbols as hash keys, however it is possible to use different data types as keys.
+
+```ruby
+many_key_types = {
+    "height" => "6 feet",
+    ["height"] => "6 feet",
+    1 => 'one',
+    45.125 => '45.125',
+    {key: 'key'} => 'hash as key!?!'
+    }
+```
+
+Notice when using other data types as keys in hashes, that a hash rocket `=>` must be used. When running this in irb, this code is outputs the hash as is and works with many data types.
+
+
+
+**Common Hash Methods**
+
+- `.key?` checks if a hash contains any specific key and returns a boolean value.
+
+  ```ruby
+  hash = {key: 'value'}
+  
+  hash.key?(:key)
+  > true
+  
+  hash.key?(:some_key)
+  > false
+  ```
+
+- `.select` passes key value pairs to a block and returns any pairs that evaluate to true.
+
+  ```ruby
+  ```
+
+  
+
+
 
 
 
