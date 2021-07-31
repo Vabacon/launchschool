@@ -1,0 +1,94 @@
+{
+  "main": {
+    "id": "a7e26d41fd683726",
+    "type": "split",
+    "children": [
+      {
+        "id": "44c81bdbaddda397",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "CCNA_200-301.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c3ae1f570537b4ec",
+    "type": "split",
+    "children": [
+      {
+        "id": "94537c60e8fd8619",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "96ac5bbc8fdc5924",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "a480aa06847edc90",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7a1eb1cb0259255d",
+    "type": "split",
+    "children": [
+      {
+        "id": "b2b1773cbf28956e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9a5b01160b8b8538",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "CCNA_200-301.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "44c81bdbaddda397",
+  "lastOpenFiles": [
+    "CCNA_200-301.md",
+    "Intro_to_programming.md"
+  ]
+}
